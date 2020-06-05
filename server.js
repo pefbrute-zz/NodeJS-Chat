@@ -6,6 +6,16 @@ var io = require("socket.io")(http);
 var mongoose = require("mongoose");
 
 app.use(express.static(__dirname));
+
+// app.use(express.static("some-folder"));
+
+// app.use(express.static("./some-folder"));
+// app.use(express.static("\some-folder"));
+// app.use(express.static(`${__dirname}/some-folder`));
+
+// app.use("/some-folder", express.static(__dirname + "/some-folder"));
+
+console.log(`Dirname: ${__dirname}`);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -43,11 +53,13 @@ io.on("connection", () => {
   console.log("a user is connected");
 });
 
-mongoose.connect(dbUrl, {useNewUrlParser: true,
-   useUnifiedTopology: true},
-   (err) => {
-  console.log("mongodb connected", err);
-});
+mongoose.connect(
+  dbUrl,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err) => {
+    console.log("mongodb connected", err);
+  }
+);
 
 var server = http.listen(3000, () => {
   console.log("server is running on port", server.address().port);
