@@ -1,19 +1,11 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
-var mongoose = require("mongoose");
+var express = require("express"),
+  bodyParser = require("body-parser"),
+  app = express(),
+  http = require("http").Server(app),
+  io = require("socket.io")(http),
+  mongoose = require("mongoose");
 
 app.use(express.static(__dirname));
-
-// app.use(express.static("some-folder"));
-
-// app.use(express.static("./some-folder"));
-// app.use(express.static("\some-folder"));
-// app.use(express.static(`${__dirname}/some-folder`));
-
-// app.use("/some-folder", express.static(__dirname + "/some-folder"));
 
 console.log(`Dirname: ${__dirname}`);
 app.use(bodyParser.json());
